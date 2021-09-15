@@ -1,0 +1,17 @@
+{
+  "name": "tapiocas",
+  "version": "0.0.1",
+  "description": "Juicy utils",
+  "exports": "./index.js",
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/matschik/tapiocas.git"
+  },
+  "author": "Mathieu Schimmerling <mathieu.schimmerling@protonmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/matschik/tapiocas/issues"
+  },
+  "homepage": "https://github.com/matschik/tapiocas#readme"
+}
