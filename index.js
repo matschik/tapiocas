@@ -270,3 +270,40 @@ export function createLocaleStorage(k) {
     },
   };
 }
+
+export function anchorSmoothScroll(event, { duration = 800, anchorId } = {}) {
+    let finalTarget;
+    if (!anchorId) {
+        anchorId = event.target.getAttribute('href').split('#')[1];
+    }
+
+    finalTarget = document.getElementById(anchorId);
+
+    if (!finalTarget) {
+        return;
+    }
+    const targetPosition = finalTarget.getBoundingClientRect().top;
+    const startPosition = window.pageYOffset;
+    if (targetPosition === 0) {
+        return;
+    }
+    let startTime = null;
+    function animate(currentTime) {
+        if (startTime === null) {
+            startTime = currentTime;
+        }
+        const timeElapsed = currentTime - startTime;
+        const run = ease(timeElapsed, startPosition, targetPosition, duration);
+        window.scrollTo(0, run);
+        if (timeElapsed < duration) {
+            requestAnimationFrame(animate);
+        }
+    }
+    function ease(t, b, c, d) {
+        t /= d / 2;
+        if (t < 1) return (c / 2) * t * t * t * t + b;
+        t -= 2;
+        return (-c / 2) * (t * t * t * t - 2) + b;
+    }
+    requestAnimationFrame(animate);
+}
